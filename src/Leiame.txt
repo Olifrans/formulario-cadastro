@@ -1,0 +1,44 @@
+
+
+
+npx create-react-app formulario-cadastro
+
+
+
+https://v4.mui.com/pt/
+
+
+
+Instalação
+Instale o Material-UI via npm. Nós cuidaremos de injetar o CSS necessário.
+
+$ npm install @material-ui/core
+
+
+ou use uma CDN.
+Carregue a fonte padrão Roboto.
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+
+
+
+
+Uso
+Os componentes do Material-UI funcionam sem qualquer configuração adicional, e não poluem o escopo global.
+import React from 'react';
+import { Button } from '@material-ui/core';
+
+function App() {
+  return <Button color="primary">Hello World</Button>;
+}
+
+
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+
+
+
+
+
+  npm install @fontsource/roboto

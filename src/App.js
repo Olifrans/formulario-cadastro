@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react/cjs/react.production.min";
+import "./App.css";
+import FormularioCadastro from "./components/FormularioCadastro/FormularioCadastro";
+import { Container, Typography, Avatar } from "@material-ui/core";
+import "@fontsource/roboto";
+import { CropFreeSharp } from "@mui/icons-material";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Container component="article" maxWidth="md">
+        <Avatar
+          alt="Remy Sharp"
+          src="../public/assets/logo-iti.png"
+          variant="circular"
+        />
+
+        <Typography variant="h3" component="h1" align="center">
+          ITI - Instituto Tecnológico Inovação
+        </Typography>
+
+        <Typography variant="h4" component="h2" align="center">
+          Receba nossos cursos
+        </Typography>
+
+        <FormularioCadastro aoEviar={aoEviarFormulario} validaCPF={validaCPF} />
+      </Container>
+    );
+  }
+}
+
+function aoEviarFormulario(dados) {
+  console.log(dados);
+}
+
+function validaCPF(cpf) {
+  if (cpf.length !== 11) {
+    return {
+      valido: false,
+      texto: "O CPF deve ser composto de 11 digitos númericos.",
+    };
+  } else {
+    return { valido: true, texto: "" };
+  }
 }
 
 export default App;
