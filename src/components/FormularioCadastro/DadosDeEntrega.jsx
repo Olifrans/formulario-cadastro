@@ -35,6 +35,7 @@ function DadosDeEntrega() {
         type="text"
         variant="outlined"
         margin="normal"
+        fullWidth
       />
 
       <TextField
@@ -43,6 +44,7 @@ function DadosDeEntrega() {
         type="text"
         variant="outlined"
         margin="normal"
+        fullWidth
       />
 
       <Button type="submit" variant="contained" color="primary" fullWidth>

@@ -1,9 +1,14 @@
 import { Button, TextField } from "@material-ui/core";
 import React from "react";
 
-function DadosUsuario() {
+function DadosUsuario({ aoEviar }) {
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        aoEviar();
+      }}
+    >
       <TextField
         id="email"
         label="email"
