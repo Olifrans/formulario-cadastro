@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
+import DadosDeEntrega from "./DadosDeEntrega";
 import DadosPessoais from "./DadosPessoais";
+import DadosUsuario from "./DadosUsuario";
 
 
 
@@ -8,7 +10,14 @@ import DadosPessoais from "./DadosPessoais";
 function FormularioCadastro({ aoEviar, validaCPF }) {
 
   return (
-    <DadosPessoais />
+    <>
+     <DadosPessoais aoEviar={aoEviar} validaCPF={validaCPF} />
+     <DadosUsuario />
+     <DadosDeEntrega />
+
+      
+    </>
+   
   );
 }
 
