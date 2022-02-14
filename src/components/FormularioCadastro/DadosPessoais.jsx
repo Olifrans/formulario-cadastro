@@ -1,36 +1,60 @@
 import React, { useState } from "react";
 import { Button, TextField, Switch, FormControlLabel } from "@material-ui/core";
 
-
-
 //Formulario controlados
-function DadosPessoais({ aoEviar, validaCPF }) {
+function DadosPessoais({ aoEviar, validacoes }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
   const [cursos, setCursos] = useState(true);
   const [novidades, setNovidades] = useState(true);
-  const [erros, setErros] = useState({ cpf: { valido: true, texto: "" } });
+
+  const [erros, setErros] = useState({ cpf: { valido: true, texto: "" }, nome: { valido: true, texto: "" } });
+
+  function validaCampos(event) {
+    const { name, value } = event.target;
+    const novoEstado = { ...erros };
+    novoEstado[name] = validacoes[name](value);
+    setErros(novoEstado);
+  }
+
+  function possoEviar(event) {
+    for (let campo in erros) {
+      if (!erros[campo].valido) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        aoEviar({ nome, sobrenome, cpf, cursos, novidades });
+        if (possoEviar()) {
+          aoEviar({ nome, sobrenome, cpf, cursos, novidades });
+        }
       }}
     >
       <TextField
         value={nome}
         onChange={(event) => {
           setNome(event.target.value);
-
           // let tempoNome = event.target.value;
           // if (tempoNome.length >= 7) {
           //   tempoNome = tempoNome.substring(0,4);
           // }
           // setNome(tempoNome);
         }}
+
+        onBlur={validaCampos}
+        error={!erros.nome.valido}
+        helperText={erros.nome.texto}
+
+
+
         id="nome"
+        name="nome"
         variant="outlined"
         label="Nome"
         fullWidth
@@ -44,6 +68,7 @@ function DadosPessoais({ aoEviar, validaCPF }) {
           setSobrenome(event.target.value);
         }}
         id="sobrenome"
+        name="sobrenome"
         variant="outlined"
         label="Sobrenome"
         fullWidth
@@ -56,16 +81,13 @@ function DadosPessoais({ aoEviar, validaCPF }) {
           setCpf(event.target.value);
         }}
         id="cpf"
+        name="cpf"
         variant="outlined"
         label="CPF"
         fullWidth
         margin="normal"
         required
-        //Erros
-        onBlur={(event) => {
-          const ehcpfValido = validaCPF(cpf);
-          setErros({ cpf: ehcpfValido });
-        }}
+        onBlur={validaCampos}
         error={!erros.cpf.valido}
         helperText={erros.cpf.texto}
       />
@@ -99,7 +121,7 @@ function DadosPessoais({ aoEviar, validaCPF }) {
       />
 
       <Button type="submit" variant="contained" color="primary">
-        Cadastrar
+        Próximo
       </Button>
     </form>
   );

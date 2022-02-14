@@ -4,6 +4,7 @@ import FormularioCadastro from "./components/FormularioCadastro/FormularioCadast
 import { Container, Typography, Avatar } from "@material-ui/core";
 import "@fontsource/roboto";
 import { CropFreeSharp } from "@mui/icons-material";
+import { validaCPF, validaSenha } from "./models/cadastro";
 
 class App extends Component {
   render() {
@@ -23,7 +24,10 @@ class App extends Component {
           Treinamentos e Inovação Tecnológica
         </Typography>
 
-        <FormularioCadastro aoEviar={aoEviarFormulario} validaCPF={validaCPF} />
+        <FormularioCadastro
+          aoEviar={aoEviarFormulario}
+          validacoes={{ cpf: validaCPF, senha: validaSenha, nome:validaSenha }}
+        />
       </Container>
     );
   }

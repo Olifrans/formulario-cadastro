@@ -1,15 +1,34 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 
-function DadosUsuario({ aoEviar }) {
+function DadosUsuario({ aoEviar, validacoes }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
+  const [erros, setErros] = useState({ senha: { valido: true, texto: "" } });
+  function validaCampos(event) {
+    const { name, value } = event.target;
+    const novoEstado = { ...erros };
+    novoEstado[name] = validacoes[name](value);
+    setErros(novoEstado);
+  }
+
+  function possoEviar(event) {
+    for (let campo in erros) {
+      if (!erros[campo].valido) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        aoEviar({email, senha});
+        if (possoEviar()) {
+          aoEviar({ email, senha });
+        }
       }}
     >
       <TextField
@@ -18,6 +37,7 @@ function DadosUsuario({ aoEviar }) {
           setEmail(event.target.value);
         }}
         id="email"
+        name="email"
         label="email"
         type="email"
         variant="outlined"
@@ -30,7 +50,11 @@ function DadosUsuario({ aoEviar }) {
         onChange={(event) => {
           setSenha(event.target.value);
         }}
+        onBlur={validaCampos}
+        error={!erros.senha.valido}
+        helperText={erros.senha.texto}
         id="senha"
+        name="senha"
         variant="outlined"
         fullWidth
         margin="normal"
@@ -40,7 +64,7 @@ function DadosUsuario({ aoEviar }) {
       />
 
       <Button type="submit" variant="contained" color="primary">
-        Cadastrar
+      Próximo
       </Button>
     </form>
   );
