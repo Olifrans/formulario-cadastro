@@ -1,6 +1,7 @@
 import { Component } from "react/cjs/react.production.min";
 import "./App.css";
 import FormularioCadastro from "./components/FormularioCadastro/FormularioCadastro";
+
 import ValidacoesCadastros from "./contexts/ValidacoesCadastros";
 
 import { Container, Typography, Avatar } from "@material-ui/core";

@@ -2,19 +2,13 @@ import { Button, TextField } from "@material-ui/core";
 import React, { useState, useContext } from "react";
 import ValidacoesCadastros from "../../contexts/ValidacoesCadastros";
 
+import useErros from "../../hoocks/useErros.js";
+
 function DadosUsuario({ aoEviar }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [erros, setErros] = useState({ senha: { valido: true, texto: "" } });
-
   const validacoes = useContext(ValidacoesCadastros);
-
-  function validaCampos(event) {
-    const { name, value } = event.target;
-    const novoEstado = { ...erros };
-    novoEstado[name] = validacoes[name](value);
-    setErros(novoEstado);
-  }
+  const [erros, validaCampos] = useErros(validacoes);
 
   function possoEviar(event) {
     for (let campo in erros) {

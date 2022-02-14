@@ -1,26 +1,16 @@
 import React, { useState, useContext } from "react";
 import { Button, TextField, Switch, FormControlLabel } from "@material-ui/core";
 import ValidacoesCadastros from "../../contexts/ValidacoesCadastros";
+import useErros from "../../hoocks/useErros.js";
 
-//Formulario controlados
 function DadosPessoais({ aoEviar }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
   const [cursos, setCursos] = useState(true);
   const [novidades, setNovidades] = useState(true);
-  const [erros, setErros] = useState({ cpf: { valido: true, texto: "" }, nome: { valido: true, texto: "" } });
-
-
-
   const validacoes = useContext(ValidacoesCadastros);
-
-  function validaCampos(event) {
-    const { name, value } = event.target;
-    const novoEstado = { ...erros };
-    novoEstado[name] = validacoes[name](value);
-    setErros(novoEstado);
-  }
+  const [erros, validaCampos] = useErros(validacoes);
 
   function possoEviar(event) {
     for (let campo in erros) {
@@ -50,13 +40,9 @@ function DadosPessoais({ aoEviar }) {
           // }
           // setNome(tempoNome);
         }}
-
         onBlur={validaCampos}
         error={!erros.nome.valido}
         helperText={erros.nome.texto}
-
-
-
         id="nome"
         name="nome"
         variant="outlined"
