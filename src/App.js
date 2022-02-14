@@ -20,7 +20,7 @@ class App extends Component {
         </Typography>
 
         <Typography variant="h4" component="h2" align="center">
-          Receba nossos cursos
+          Treinamentos e Inovação Tecnológica
         </Typography>
 
         <FormularioCadastro aoEviar={aoEviarFormulario} validaCPF={validaCPF} />
