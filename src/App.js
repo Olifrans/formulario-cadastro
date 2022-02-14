@@ -33,15 +33,4 @@ function aoEviarFormulario(dados) {
   console.log(dados);
 }
 
-function validaCPF(cpf) {
-  if (cpf.length !== 11) {
-    return {
-      valido: false,
-      texto: "O CPF deve ser composto de 11 digitos númericos.",
-    };
-  } else {
-    return { valido: true, texto: "" };
-  }
-}
-
 export default App;

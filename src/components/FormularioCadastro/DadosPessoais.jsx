@@ -21,7 +21,6 @@ function DadosPessoais({ aoEviar, validaCPF }) {
     >
       <TextField
         value={nome}
-
         onChange={(event) => {
           setNome(event.target.value);
 
