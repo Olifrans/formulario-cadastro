@@ -4,7 +4,7 @@ import DadosDeEntrega from "./DadosDeEntrega";
 import DadosPessoais from "./DadosPessoais";
 import DadosUsuario from "./DadosUsuario";
 
-function FormularioCadastro({ aoEviar, validacoes }) {
+function FormularioCadastro({ aoEviar }) {
   const [etapaAtual, setEtapaAtual] = useState(0);
   const [dadosColetados, setDadosColetados] = useState({});
 
@@ -15,9 +15,9 @@ function FormularioCadastro({ aoEviar, validacoes }) {
   });
 
   const formularios = [
-    <DadosUsuario aoEviar={coletaDados} validacoes={validacoes} />,
-    <DadosPessoais aoEviar={coletaDados} validacoes={validacoes} />,
-    <DadosDeEntrega aoEviar={coletaDados} validacoes={validacoes} />,
+    <DadosUsuario aoEviar={coletaDados} />,
+    <DadosPessoais aoEviar={coletaDados} />,
+    <DadosDeEntrega aoEviar={coletaDados} />,
     <Typography variant="h5">Obrigado por se cadastrar</Typography>,
   ];
 

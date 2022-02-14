@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, TextField, Switch, FormControlLabel } from "@material-ui/core";
+import ValidacoesCadastros from "../../contexts/ValidacoesCadastros";
 
 //Formulario controlados
-function DadosPessoais({ aoEviar, validacoes }) {
+function DadosPessoais({ aoEviar }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
   const [cursos, setCursos] = useState(true);
   const [novidades, setNovidades] = useState(true);
-
   const [erros, setErros] = useState({ cpf: { valido: true, texto: "" }, nome: { valido: true, texto: "" } });
+
+
+
+  const validacoes = useContext(ValidacoesCadastros);
 
   function validaCampos(event) {
     const { name, value } = event.target;

@@ -1,6 +1,8 @@
 import { Component } from "react/cjs/react.production.min";
 import "./App.css";
 import FormularioCadastro from "./components/FormularioCadastro/FormularioCadastro";
+import ValidacoesCadastros from "./contexts/ValidacoesCadastros";
+
 import { Container, Typography, Avatar } from "@material-ui/core";
 import "@fontsource/roboto";
 import { CropFreeSharp } from "@mui/icons-material";
@@ -24,10 +26,11 @@ class App extends Component {
           Treinamentos e Inovação Tecnológica
         </Typography>
 
-        <FormularioCadastro
-          aoEviar={aoEviarFormulario}
-          validacoes={{ cpf: validaCPF, senha: validaSenha, nome:validaSenha }}
-        />
+        <ValidacoesCadastros.Provider
+          value={{ cpf: validaCPF, senha: validaSenha, nome: validaSenha }}
+        >
+          <FormularioCadastro aoEviar={aoEviarFormulario} />
+        </ValidacoesCadastros.Provider>
       </Container>
     );
   }

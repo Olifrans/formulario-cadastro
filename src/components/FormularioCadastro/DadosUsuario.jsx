@@ -1,11 +1,14 @@
 import { Button, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import ValidacoesCadastros from "../../contexts/ValidacoesCadastros";
 
-function DadosUsuario({ aoEviar, validacoes }) {
+function DadosUsuario({ aoEviar }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
   const [erros, setErros] = useState({ senha: { valido: true, texto: "" } });
+
+  const validacoes = useContext(ValidacoesCadastros);
+
   function validaCampos(event) {
     const { name, value } = event.target;
     const novoEstado = { ...erros };
@@ -64,7 +67,7 @@ function DadosUsuario({ aoEviar, validacoes }) {
       />
 
       <Button type="submit" variant="contained" color="primary">
-      Próximo
+        Próximo
       </Button>
     </form>
   );
