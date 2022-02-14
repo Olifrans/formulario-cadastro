@@ -6,30 +6,21 @@ import DadosUsuario from "./DadosUsuario";
 
 //Formulario controlados
 function FormularioCadastro({ aoEviar, validaCPF }) {
-
   const [etapaAtual, setEtapaAtual] = useState(0);
 
-  function proximo(){
-    setEtapaAtual(etapaAtual+1)
+  const formulario = [
+    <DadosUsuario aoEviar={proximo} />,
+    <DadosPessoais aoEviar={proximo} validaCPF={validaCPF} />,
+    <DadosDeEntrega aoEviar={aoEviar} />,
+  ];
+
+  function proximo() {
+    setEtapaAtual(etapaAtual + 1);
   }
 
-  function formularioAtual(etapa) {
-    switch (etapa) {
-      case 0:
-        return <DadosUsuario aoEviar={proximo} />;
+  //return <Typography>Error ao selecionar o formulario</Typography>;
 
-      case 1:
-        return <DadosPessoais aoEviar={proximo} validaCPF={validaCPF} />;
-
-      case 2:
-        return <DadosDeEntrega aoEviar={aoEviar} />;
-
-      default:
-        return <Typography>Error ao selecionar o formulario</Typography>;
-    }
-  }
-
-  return <>{formularioAtual(etapaAtual)}</>;
+  return <>{formulario[etapaAtual]}</>;
 }
 
 export default FormularioCadastro;
