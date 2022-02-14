@@ -8,16 +8,8 @@ function DadosUsuario({ aoEviar }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const validacoes = useContext(ValidacoesCadastros);
-  const [erros, validaCampos] = useErros(validacoes);
 
-  function possoEviar(event) {
-    for (let campo in erros) {
-      if (!erros[campo].valido) {
-        return false;
-      }
-    }
-    return true;
-  }
+  const [erros, validaCampos, possoEviar] = useErros(validacoes);
 
   return (
     <form

@@ -10,8 +10,16 @@ function useErros(validacoes) {
     novoEstado[name] = validacoes[name](value);
     setErros(novoEstado);
   }
-  
-  return [erros, validaCampos];
+
+  function possoEviar() {
+    for (let campo in erros) {
+      if (!erros[campo].valido) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return [erros, validaCampos, possoEviar];
 }
 
 function criarEstadoInicial(validacoes) {
@@ -23,3 +31,31 @@ function criarEstadoInicial(validacoes) {
 }
 
 export default useErros;
+
+
+
+
+
+
+
+// <TextField
+//         value={nome}
+//         onChange={(event) => {
+//           setNome(event.target.value);
+//           // let tempoNome = event.target.value;
+//           // if (tempoNome.length >= 7) {
+//           //   tempoNome = tempoNome.substring(0,4);
+//           // }
+//           // setNome(tempoNome);
+//         }}
+//         onBlur={validaCampos}
+//         error={!erros.nome.valido}
+//         helperText={erros.nome.texto}
+//         id="nome"
+//         name="nome"
+//         variant="outlined"
+//         label="Nome"
+//         fullWidth
+//         margin="normal"
+//         required
+//       />

@@ -10,16 +10,8 @@ function DadosPessoais({ aoEviar }) {
   const [cursos, setCursos] = useState(true);
   const [novidades, setNovidades] = useState(true);
   const validacoes = useContext(ValidacoesCadastros);
-  const [erros, validaCampos] = useErros(validacoes);
 
-  function possoEviar(event) {
-    for (let campo in erros) {
-      if (!erros[campo].valido) {
-        return false;
-      }
-    }
-    return true;
-  }
+  const [erros, validaCampos, possoEviar] = useErros(validacoes);
 
   return (
     <form
@@ -34,11 +26,6 @@ function DadosPessoais({ aoEviar }) {
         value={nome}
         onChange={(event) => {
           setNome(event.target.value);
-          // let tempoNome = event.target.value;
-          // if (tempoNome.length >= 7) {
-          //   tempoNome = tempoNome.substring(0,4);
-          // }
-          // setNome(tempoNome);
         }}
         onBlur={validaCampos}
         error={!erros.nome.valido}
