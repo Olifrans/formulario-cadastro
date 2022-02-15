@@ -7,6 +7,7 @@ function DadosDeEntrega({ aoEviar }) {
   const [numero, setNumero] = useState("");
   const [estado, setEstado] = useState("");
   const [cidade, setCidade] = useState("");
+  const [pais, setPais] = useState("");
 
   return (
     <form
@@ -65,6 +66,7 @@ function DadosDeEntrega({ aoEviar }) {
         fullWidth
       />
 
+
       <TextField
         value={estado}
         onChange={(event) => {
@@ -77,6 +79,24 @@ function DadosDeEntrega({ aoEviar }) {
         margin="normal"
         fullWidth
       />
+
+
+      <TextField
+        value={pais}
+        onChange={(event) => {
+          setEstado(event.target.value);
+        }}
+        id="cidade"
+        label="Cidade"
+        type="text"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+      />
+
+
+
+
 
       <Button type="submit" variant="contained" color="primary" fullWidth>
         Finalizar Cadastro
