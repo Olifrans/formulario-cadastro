@@ -84,10 +84,10 @@ function DadosDeEntrega({ aoEviar }) {
       <TextField
         value={pais}
         onChange={(event) => {
-          setEstado(event.target.value);
+          setPais(event.target.value);
         }}
-        id="cidade"
-        label="Cidade"
+        id="pais"
+        label="Pais"
         type="text"
         variant="outlined"
         margin="normal"
